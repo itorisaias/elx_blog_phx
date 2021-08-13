@@ -1,5 +1,4 @@
 defmodule Blog.MixProject do
-
   @github_url "https://github.com/itorisaias/blog"
 
   @moduledoc """
@@ -75,7 +74,7 @@ defmodule Blog.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.8", only: :dev},
-      {:excoveralls, "~> 0.10", only: :test},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 
