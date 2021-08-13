@@ -10,8 +10,8 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: '23.0'
-          elixir-version: '1.11.0'
+          otp-version: "23.0"
+          elixir-version: "1.11.0"
       - name: Restore dependencies cache
         uses: actions/cache@v2
         with:
@@ -32,8 +32,8 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: '23.0'
-          elixir-version: '1.11.0'
+          otp-version: "23.0"
+          elixir-version: "1.11.0"
       - name: Restore dependencies cache
         uses: actions/cache@v2
         with:
@@ -54,8 +54,8 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: '23.0'
-          elixir-version: '1.11.0'
+          otp-version: "23.0"
+          elixir-version: "1.11.0"
       - name: Restore dependencies cache
         uses: actions/cache@v2
         with:
@@ -76,8 +76,8 @@ jobs:
       - name: Set up Elixir
         uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
         with:
-          otp-version: '23.0'
-          elixir-version: '1.11.0'
+          otp-version: "23.0"
+          elixir-version: "1.11.0"
       - name: Restore dependencies cache
         uses: actions/cache@v2
         with:
@@ -91,5 +91,7 @@ jobs:
         run: mix deps.get
       - name: Coveralls
         run: mix coveralls.json
+      - name: Codecov
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
