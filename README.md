@@ -1,5 +1,8 @@
 # Blog
 
+[![CI](https://github.com/itorisaias/elxpro_blog_phx/actions/workflows/ci.yml/badge.svg)](https://github.com/itorisaias/elxpro_blog_phx/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/itorisaias/elxpro_blog_phx/branch/main/graph/badge.svg?token=O4G83IYTCO)](https://codecov.io/gh/itorisaias/elxpro_blog_phx)
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
