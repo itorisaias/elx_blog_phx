@@ -1,4 +1,3 @@
-
 import Config
 
 database_url =
@@ -26,6 +25,5 @@ config :blog, BlogWeb.Endpoint,
     transport_options: [socket_opts: [:inet6]]
   ],
   secret_key_base: secret_key_base
-
 
 config :blog, BlogWeb.Endpoint, server: true
