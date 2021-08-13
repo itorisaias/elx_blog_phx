@@ -133,5 +133,5 @@ jobs:
         with:
           GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
-          GIGALIXIR_APP: rocketpayy
+          GIGALIXIR_APP: blog-elxpro-itorisias
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
