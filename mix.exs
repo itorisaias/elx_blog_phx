@@ -1,4 +1,7 @@
 defmodule Blog.MixProject do
+
+  @github_url "https://github.com/itorisaias/blog"
+
   @moduledoc """
   Mix Project
   """
@@ -9,6 +12,21 @@ defmodule Blog.MixProject do
       app: :blog,
       version: "0.1.0",
       elixir: "~> 1.7",
+      description: "Projeto blog",
+      source_url: @github_url,
+      homepage_url: @github_url,
+      files: ~w[mix.exs lib LICENSE.md README.md CHANGELOG.md],
+      package: [
+        maintainers: ["Itor Isaias"],
+        licenses: ["MIT"],
+        links: %{
+          "Github" => @github_url
+        }
+      ],
+      docs: [
+        main: "readme",
+        extras: ["README.md", "CHANGELOG.md"]
+      ],
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
