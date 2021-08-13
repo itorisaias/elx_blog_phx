@@ -25,6 +25,7 @@ jobs:
         run: mix deps.get
       - name: lint code
         run: mix credo --strict
+
   check_format:
     runs-on: ubuntu-latest
     steps:
@@ -47,6 +48,7 @@ jobs:
         run: mix deps.get
       - name: format
         run: mix format --check-formatted
+
   security:
     runs-on: ubuntu-latest
     steps:
@@ -69,8 +71,20 @@ jobs:
         run: mix deps.get
       - name: Sobelow
         run: mix sobelow --config
+
   quality:
     runs-on: ubuntu-latest
+    services:
+      pg:
+        image: postgres:12
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - name: Set up Elixir
