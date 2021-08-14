@@ -20,7 +20,10 @@ defmodule BlogWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    post "/posts", PostController, :create
     get "/posts", PostController, :index
+    get "/posts/new", PostController, :new
     get "/posts/:id", PostController, :show
   end
 

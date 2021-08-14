@@ -11,7 +11,7 @@ defmodule Blog.Posts.Post do
     timestamps()
   end
 
-  def changeset(post, attrs \\ %__MODULE__{}) do
+  def changeset(post, attrs \\ %{}) do
     post
     |> cast(attrs, @required_field)
     |> validate_required(@required_field)
