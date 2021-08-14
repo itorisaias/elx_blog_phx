@@ -7,6 +7,7 @@
     <title>Blog · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -17,7 +18,9 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="#">Bem vindo!! ALUNO</a></li>
             <li><a href="#">Postar</a></li>
-            <li><a href="#">Posts</a></li>
+            <li>
+              <%= link "Posts", to: Routes.post_path(@conn, :index) %>
+            </li>
             </ul>
           </div>
         </nav>

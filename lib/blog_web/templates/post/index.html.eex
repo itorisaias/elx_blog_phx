@@ -1,1 +1,24 @@
 <h1>Posts</h1>
+
+<ul class="collection">
+  <%= for post <- @posts do %>
+    <li class="collection-item">
+      <%= post.title %>
+      <a href="#" class="secondary-content">
+        <i class="material-icons red-text">delete</i>
+      </a>
+      <a href="#" class="secondary-content">
+        <i class="material-icons green-text">edit</i>
+      </a>
+      <%= link to: Routes.post_path(@conn, :show, post), class: "secondary-content" do %>
+        <i class="material-icons blue-text">send</i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
