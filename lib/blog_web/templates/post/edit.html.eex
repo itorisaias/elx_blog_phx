@@ -1,28 +1,10 @@
-<div class="row">
-  <div class="col s12">
-    <%= form_for @changeset, Routes.post_path(@conn, :update, @changeset.data), fn f -> %>
+<h1>Editar Post</h1>
 
-      <div class="row">
-        <div class="input-field col s12">
-          <%= label(f, :title, for: "title") %>
-          <%= text_input(f, :title, id: "title", class: "validate") %>
-          <span class="helper-text" data-error="wrong" data-success="rigth">
-            <%= error_tag(f, :title) %>
-          </span>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="input-field col s12">
-          <%= label(f, :description, for: "description") %>
-          <%= textarea(f, :description, id: "description", class: "materialize-textarea") %>
-          <span class="helper-text" data-error="wrong" data-success="rigth">
-            <%= error_tag(f, :description) %>
-          </span>
-        </div>
-      </div>
-
-      <%= submit("Atualizar", class: "waves-effect waves-light btn") %>
-    <% end %>
-  </div>
-</div>
+<%= render(
+  "form.html",
+  Map.put(
+    assigns,
+    :action,
+    Routes.post_path(@conn, :update, @changeset.data)
+  )
+) %>
