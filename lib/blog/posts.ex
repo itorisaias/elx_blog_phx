@@ -9,10 +9,6 @@ defmodule Blog.Posts do
     Repo.all(Post)
   end
 
-  def get_post(id) do
-    Repo.get(Post, id)
-  end
-
   def get_post!(id) do
     Repo.get!(Post, id)
   end
