@@ -6,9 +6,9 @@
 //
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
-import {Socket} from "phoenix"
+import { Socket } from "phoenix";
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("/socket", { params: { token: window.userToken } });
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -52,12 +52,52 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 //     end
 //
 // Finally, connect to the socket:
-socket.connect()
+socket.connect();
 
-// Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("comments:1", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+function createSocket(post_id) {
+  const listComments = document.querySelector(".collection");
+  const btnComment = document.getElementById("btn-comentar");
+  const inputComment = document.getElementById("comentario");
+  const channel = socket.channel(`comments:${post_id}`, {});
 
-export default socket
+  function templateComment({ content }) {
+    return `
+    <li class="collection-item avatar">
+      <i class="material-icons circle red">play_arrow</i>
+      <span class="title">Title</span>
+      <p>${content}</p>
+    </li>
+    `;
+  }
+  function onCreateComment(event) {
+    event.preventDefault()
+
+    const comentario = inputComment.value;
+
+    channel.push("comment:add", { content: comentario });
+
+    inputComment.value = "";
+  }
+  function onNewComment(newComment) {
+    console.log(newComment);
+    listComments.innerHTML += templateComment(newComment);
+  }
+  function onJoinSuccess({ comments }) {
+    listComments.innerHTML = comments
+      .map((comment) => templateComment(comment))
+      .join("");
+  }
+  function onJoinFalied(resp) {
+    console.log("Unable to join", resp);
+  }
+
+  btnComment.addEventListener("click", onCreateComment);
+
+  channel.join().receive("ok", onJoinSuccess).receive("error", onJoinFalied);
+
+  channel.on(`comments:${post_id}:new`, onNewComment);
+}
+
+window.createSocket = createSocket;
+
+export default socket;

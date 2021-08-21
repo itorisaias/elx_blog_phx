@@ -22,22 +22,21 @@
     <div class="row">
       <div class="input-field col s10">
         <i class="material-icons prefix">mode_edit</i>
-        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-        <label for="icon_prefix2">First Name</label>
+        <textarea id="comentario" class="materialize-textarea"></textarea>
+        <label for="comentario">Comentario...</label>
       </div>
 
       <div class="input-field col s2">
-        <button class="btn waves-effect waves-light">Comentar</button>
+        <button class="btn waves-effect waves-light" id="btn-comentar">Comentar</button>
       </div>
     </div>
   </form>
 </div>
 
-<ul class="collection">
-  <li class="collection-item avatar">
-    <i class="material-icons circle red">play_arrow</i>
-    <span class="title">Title</span>
-    <p>Comentario</p>
-    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-  </li>
-</ul>
+<ul class="collection"></ul>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  window.createSocket(<%= @post.id %>)
+})
+</script>
