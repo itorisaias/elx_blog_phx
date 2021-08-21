@@ -2,7 +2,7 @@ defmodule BlogWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", BlogWeb.RoomChannel
+  channel "comments:*", BlogWeb.CommentsChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

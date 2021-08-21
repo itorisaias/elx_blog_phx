@@ -1,4 +1,7 @@
 defmodule Blog.PostsTest do
+  @moduledoc """
+  Blogs tests
+  """
   use Blog.DataCase
   alias Blog.{Posts, Posts.Post}
 

@@ -13,6 +13,10 @@ defmodule Blog.Posts do
     Repo.get!(Post, id)
   end
 
+  def get_post_with_comments!(id) do
+    Repo.get!(Post, id) |> Repo.preload(:comments)
+  end
+
   def create_post(attrs \\ {}) do
     %Post{}
     |> Post.changeset(attrs)
