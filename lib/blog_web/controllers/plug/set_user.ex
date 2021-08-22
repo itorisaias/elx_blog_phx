@@ -16,7 +16,8 @@ defmodule BlogWeb.Plug.SetUser do
         assign(conn, :user, user)
 
       true ->
-        assign(conn, :user, nil)
+        conn
+        |> assign(:user, nil)
     end
   end
 end

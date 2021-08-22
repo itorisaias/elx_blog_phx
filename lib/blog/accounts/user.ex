@@ -10,6 +10,8 @@ defmodule Blog.Accounts.User do
     field :provider, :string
     field :token, :string
 
+    has_many :posts, Blog.Posts.Post
+
     timestamps()
   end
 
