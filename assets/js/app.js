@@ -15,6 +15,9 @@ import socket from "./socket";
 import "phoenix_html";
 
 document.addEventListener("DOMContentLoaded", function () {
-  var elems = document.querySelectorAll(".fixed-action-btn");
-  M.FloatingActionButton.init(elems, {});
+  const btnFloat = document.querySelectorAll(".fixed-action-btn");
+  M.FloatingActionButton.init(btnFloat, {});
+
+  const sideNav = document.querySelectorAll('.sidenav');
+  M.Sidenav.init(sideNav, {});
 });

@@ -10,35 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <section>
-        <nav>
-          <div class="nav-wrapper">
-            <%= link "Logo", to: Routes.page_path(@conn, :index), class: "brand-logo" %>
-
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <%= if @conn.assigns[:user] do %>
-                <li>
-                  <a href="#">
-                    Bem vindo!! <%= @conn.assigns[:user].email %>
-                  </a>
-                </li>
-                <li>
-                  <%= link "Posts", to: Routes.post_path(@conn, :index) %>
-                </li>
-                <li>
-                  <%= link "Logout", to: Routes.post_path(@conn, :index) %>
-                </li>
-              <% else %>
-                <li>
-                  <%= link "Logar", to: Routes.auth_path(@conn, :request, "google") %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        </nav>
-      </section>
-    </header>
+    <%= render "_header.html", assigns %>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

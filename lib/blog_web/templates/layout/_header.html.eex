@@ -1,0 +1,19 @@
+<header>
+  <section>
+    <nav>
+      <div class="nav-wrapper">
+        <%= link "Logo", to: Routes.page_path(@conn, :index), class: "brand-logo" %>
+
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <%= render "_links.html", assigns %>
+        </ul>
+      </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+      <%= render "_links.html", assigns %>
+    </ul>
+  </section>
+</header>
