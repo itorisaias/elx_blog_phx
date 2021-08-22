@@ -31,7 +31,6 @@ defmodule BlogWeb.Router do
     get "/:provider/callback", AuthController, :callback
   end
 
-
   # Other scopes may use custom stacks.
   # scope "/api", BlogWeb do
   #   pipe_through :api

@@ -1,5 +1,6 @@
 defmodule BlogWeb.AuthController do
   use BlogWeb, :controller
+  alias Blog.Accounts
 
   plug Ueberauth
 
@@ -13,7 +14,19 @@ defmodule BlogWeb.AuthController do
       provider: provider
     }
 
-    IO.inspect(user)
+    case Accounts.create_user(user) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "Bem vindo #{user.email}!")
+        |> put_session(:user_id, user.id)
+        |> redirect(to: Routes.page_path(conn, :index))
+
+      {:error, _reason} ->
+        conn
+        |> put_flash(:error, "Falha na autenticação!")
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
+
     render(conn, "index.html")
   end
 end
