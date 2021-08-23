@@ -1,0 +1,74 @@
+{
+  // Based on Elixir formatter's style
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  // Provides smart completion for "do" and "fn ->" blocks. Does not run the Elixir formatter.
+  "editor.formatOnType": true,
+  // Misc
+  "editor.wordBasedSuggestions": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  // "editor.fontFamily": "FiraCode-Retina",
+  "editor.acceptSuggestionOnEnter": "on",
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "database": "blog_dev",
+      "username": "postgres",
+      "password": "postgres",
+      "name": "blog"
+    }
+  ],
+  "elixirLinter.useStrict": true,
+  "elixirLinter.defaultSeverity": 10,
+  "elixirLinter.consistencySeverity": 10,
+  "elixirLinter.refactoringSeverity": 10,
+  "elixirLinter.readabilitySeverity": 10,
+  "elixirLinter.warningsSeverity": 10,
+  "files.associations": {
+    "*.eex": "html-eex",
+    "*.leex": "html-eex"
+  },
+  "emmet.includeLanguages": {
+    "html-eex": "html"
+  },
+  "beautify.language": {
+    "js": {
+      "type": [
+        "javascript",
+        "json",
+        "jsonc"
+      ],
+      "filename": [
+        ".jshintrc",
+        ".jsbeautifyrc"
+      ]
+    },
+    "css": [
+      "css",
+      "less",
+      "scss"
+    ],
+    "html": [
+      "htm",
+      "html",
+      "html-eex"
+    ]
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "[html-eex]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  }
+}
