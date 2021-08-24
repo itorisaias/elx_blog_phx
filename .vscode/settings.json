@@ -55,11 +55,6 @@
       "css",
       "less",
       "scss"
-    ],
-    "html": [
-      "htm",
-      "html",
-      "html-eex"
     ]
   },
   "[jsonc]": {
