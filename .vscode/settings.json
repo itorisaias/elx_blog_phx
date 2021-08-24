@@ -39,24 +39,6 @@
   "emmet.includeLanguages": {
     "html-eex": "html"
   },
-  "beautify.language": {
-    "js": {
-      "type": [
-        "javascript",
-        "json",
-        "jsonc"
-      ],
-      "filename": [
-        ".jshintrc",
-        ".jsbeautifyrc"
-      ]
-    },
-    "css": [
-      "css",
-      "less",
-      "scss"
-    ]
-  },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },

@@ -14,7 +14,7 @@ defmodule Blog.Posts do
   end
 
   def get_post_with_comments!(id) do
-    Repo.get!(Post, id) |> Repo.preload(:comments)
+    Repo.get!(Post, id) |> Repo.preload(comments: [:user])
   end
 
   def create_post(user, attrs \\ {}) do
