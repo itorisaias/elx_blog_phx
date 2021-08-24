@@ -28,7 +28,7 @@ defmodule BlogWeb.UserSocket do
         {:ok, assign(socket, :user_id, user_id)}
 
       {:error, _reason} ->
-        :error
+        {:ok, socket}
     end
   end
 

@@ -109,7 +109,7 @@ function createSocket(post_id) {
     console.log("Unable to join", resp);
   }
 
-  btnComment.addEventListener("click", onCreateComment);
+  window.userToken && btnComment.addEventListener("click", onCreateComment);
 
   channel.join().receive("ok", onJoinSuccess).receive("error", onJoinFalied);
 
