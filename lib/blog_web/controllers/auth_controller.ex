@@ -33,4 +33,10 @@ defmodule BlogWeb.AuthController do
         |> redirect(to: Routes.page_path(conn, :index))
     end
   end
+
+  def callback(%{assigns: %{ueberauth_failure: _}} = conn, _params) do
+    conn
+    |> put_flash(:error, "Authentication failed.")
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
 end

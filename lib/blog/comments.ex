@@ -14,9 +14,9 @@ defmodule Blog.Comments do
 
   def get_comment!(id), do: Repo.get!(Comment, id)
 
-  def create_comment(post_id, attrs \\ %{}) do
+  def create_comment(user_id, post_id, attrs \\ %{}) do
     Blog.Posts.get_post!(post_id)
-    |> Ecto.build_assoc(:comments)
+    |> Ecto.build_assoc(:comments, user_id: user_id)
     |> change_comment(attrs)
     |> Repo.insert()
   end

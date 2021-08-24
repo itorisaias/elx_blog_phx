@@ -24,8 +24,13 @@ defmodule BlogWeb.PostControllerTest do
   end
 
   test "listar todos os post - GET /", %{conn: conn} do
-    fixture(:post)
-    conn = get(conn, Routes.post_path(conn, :index))
+    post = fixture(:post)
+
+    conn =
+      conn
+      |> Plug.Test.init_test_session(user_id: post.user_id)
+      |> get(Routes.post_path(conn, :index))
+
     assert html_response(conn, 200) =~ "Post 1"
   end
 

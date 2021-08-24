@@ -14,14 +14,16 @@ defmodule BlogWeb.CommentsChannelTest do
   }
 
   setup do
-    {:ok, user} =
+    {:ok, %Accounts.User{} = user} =
       Accounts.create_user(%{
         email: "itor isaias",
         provider: "local",
         token: "token-fake"
       })
 
-    {:ok, socket} = connect(UserSocket, %{})
+    token = Phoenix.Token.sign(BlogWeb.Endpoint, "blog_user", user.id)
+
+    {:ok, socket} = connect(UserSocket, %{"token" => token})
     {:ok, post} = Posts.create_post(user, @valid_post)
 
     {:ok, socket: socket, post: post}

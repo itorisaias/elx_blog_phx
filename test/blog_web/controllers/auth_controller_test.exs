@@ -49,6 +49,23 @@ defmodule BlogWeb.AuthControllerTest do
     assert html_response(conn, 200) =~ "Bem vindo #{@ueberauth_success.info.email}!"
   end
 
+  test "request success", %{conn: conn} do
+    conn = get(conn, Routes.auth_path(conn, :request, "google"))
+
+    assert redirected_to(conn) =~ "https://accounts.google.com"
+  end
+
+  test "callback with error google", %{conn: conn} do
+    conn =
+      conn
+      |> assign(:ueberauth_failure, "falha")
+      |> get(Routes.auth_path(conn, :callback, "google"))
+
+    assert redirected_to(conn) == Routes.page_path(conn, :index)
+    conn = get(conn, Routes.page_path(conn, :index))
+    assert html_response(conn, 200) =~ "Authentication failed."
+  end
+
   test "callback with error", %{conn: conn} do
     conn =
       conn
