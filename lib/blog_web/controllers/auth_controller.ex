@@ -2,7 +2,7 @@ defmodule BlogWeb.AuthController do
   use BlogWeb, :controller
   alias Blog.Accounts
 
-  plug Ueberauth
+  plug(Ueberauth)
 
   def logout(conn, _) do
     conn
@@ -32,7 +32,5 @@ defmodule BlogWeb.AuthController do
         |> put_flash(:error, "Falha na autenticação!")
         |> redirect(to: Routes.page_path(conn, :index))
     end
-
-    render(conn, "index.html")
   end
 end
