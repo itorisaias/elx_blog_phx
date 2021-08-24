@@ -4,7 +4,7 @@ defmodule BlogWeb.CommentsChannelTest do
   """
   use BlogWeb.ChannelCase
 
-  alias Blog.Posts
+  alias Blog.{Accounts, Posts}
   alias BlogWeb.UserSocket
   # alias BlogWeb.CommentsChannel
 
@@ -14,8 +14,15 @@ defmodule BlogWeb.CommentsChannelTest do
   }
 
   setup do
+    {:ok, user} =
+      Accounts.create_user(%{
+        email: "itor isaias",
+        provider: "local",
+        token: "token-fake"
+      })
+
     {:ok, socket} = connect(UserSocket, %{})
-    {:ok, post} = Posts.create_post(@valid_post)
+    {:ok, post} = Posts.create_post(user, @valid_post)
 
     {:ok, socket: socket, post: post}
   end

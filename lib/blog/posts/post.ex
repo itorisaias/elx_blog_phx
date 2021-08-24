@@ -13,6 +13,8 @@ defmodule Blog.Posts.Post do
 
     has_many :comments, Blog.Comments.Comment
 
+    belongs_to :user, Blog.Accounts.User
+
     timestamps()
   end
 

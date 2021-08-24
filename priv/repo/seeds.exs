@@ -10,10 +10,16 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Blog.{Repo, Posts.Post}
+alias Blog.{Accounts, Posts}
 
-post1 = Post.changeset(%Post{}, %{title: "Post 1", description: "Description post 1"})
-post2 = Post.changeset(%Post{}, %{title: "Post 2", description: "Description post 2"})
+user = %{
+  email: "itor isaias",
+  provider: "local",
+  token: "token-fake"
+}
 
-Repo.insert!(post1)
-Repo.insert!(post2)
+post = %{title: "Post 1", description: "Description post 1"}
+
+{:ok, user} = Accounts.create_user(user)
+
+{:ok, _post} = Posts.create_post(user, post)

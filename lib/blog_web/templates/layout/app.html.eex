@@ -10,22 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <section>
-        <nav>
-          <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Bem vindo!! ALUNO</a></li>
-            <li><a href="#">Postar</a></li>
-            <li>
-              <%= link "Posts", to: Routes.post_path(@conn, :index) %>
-            </li>
-            </ul>
-          </div>
-        </nav>
-      </section>
-    </header>
+    <%= render "_header.html", assigns %>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
