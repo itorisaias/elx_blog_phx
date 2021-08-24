@@ -7,6 +7,13 @@
     <title>Blog · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+    <%= if @conn.assigns.user do %>
+      <script>
+        window.userToken = "<%= Phoenix.Token.sign(BlogWeb.Endpoint, "blog_user", @conn.assigns.user.id) %>"
+      </script>
+    <% end %>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>

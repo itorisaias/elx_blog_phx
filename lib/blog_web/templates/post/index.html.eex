@@ -1,6 +1,8 @@
-<h1>Posts</h1>
+<ul class="collection with-header">
+  <li class="collection-header">
+    <h4>Todos os Posts</h4>
+  </li>
 
-<ul class="collection">
   <%= for post <- @posts do %>
     <li class="collection-item">
       <%= post.title %>

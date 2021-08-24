@@ -1,0 +1,25 @@
+<%= if @conn.assigns.user do %>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s10">
+          <i class="material-icons prefix">mode_edit</i>
+          <textarea id="comentario" class="materialize-textarea"></textarea>
+          <label for="comentario">Comentario...</label>
+        </div>
+
+        <div class="input-field col s2">
+          <button class="btn waves-effect waves-light" id="btn-comentar">Comentar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+<% end %>
+
+<ul class="collection"></ul>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  window.createSocket(<%= @post_id %>)
+})
+</script>

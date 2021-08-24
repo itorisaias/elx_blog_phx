@@ -6,9 +6,15 @@
 //
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
-import { Socket } from "phoenix";
+import {
+  Socket
+} from "phoenix";
 
-let socket = new Socket("/socket", { params: { token: window.userToken } });
+let socket = new Socket("/socket", {
+  params: {
+    token: window.userToken
+  }
+});
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -60,38 +66,50 @@ function createSocket(post_id) {
   const inputComment = document.getElementById("comentario");
   const channel = socket.channel(`comments:${post_id}`, {});
 
-  function templateComment({ content }) {
+  function templateComment({
+    content,
+    user
+  }) {
     return `
     <li class="collection-item avatar">
-      <i class="material-icons circle red">play_arrow</i>
-      <span class="title">Title</span>
+      <img src="${user.image}" alt="Foto do usuario ${user.email}" class="circle" />
+      <span class="title">${user.email}</span>
       <p>${content}</p>
     </li>
     `;
   }
+
   function onCreateComment(event) {
     event.preventDefault()
 
     const comentario = inputComment.value;
 
-    channel.push("comment:add", { content: comentario });
+    channel.push("comment:add", {
+      content: comentario
+    });
 
     inputComment.value = "";
   }
+
   function onNewComment(newComment) {
     console.log(newComment);
     listComments.innerHTML += templateComment(newComment);
   }
-  function onJoinSuccess({ comments }) {
+
+  function onJoinSuccess({
+    comments
+  }) {
+    console.log(comments)
     listComments.innerHTML = comments
       .map((comment) => templateComment(comment))
       .join("");
   }
+
   function onJoinFalied(resp) {
     console.log("Unable to join", resp);
   }
 
-  btnComment.addEventListener("click", onCreateComment);
+  window.userToken && btnComment.addEventListener("click", onCreateComment);
 
   channel.join().receive("ok", onJoinSuccess).receive("error", onJoinFalied);
 
