@@ -10,28 +10,16 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-defmodule SeedCustom do
-  alias Blog.{Repo, Posts.Post, Accounts.User}
+alias Blog.{Accounts, Posts}
 
-  defp fixture_post(user, post) do
-    user
-    |> Ecto.build_assoc(:posts)
-    |> Post.changeset(post)
-    |> Repo.insert!()
-  end
+user = %{
+  email: "itor isaias",
+  provider: "local",
+  token: "token-fake"
+}
 
-  def init do
-    user =
-      Repo.insert!(
-        User.changeset(%User{}, %{email: "itor isaias", provider: "local", token: "token-fake"})
-      )
+post = %{title: "Post 1", description: "Description post 1"}
 
-    post1 = %{title: "Post 1", description: "Description post 1", user_id: user.id}
-    post2 = %{title: "Post 2", description: "Description post 2", user_id: user.id}
+{:ok, user} = Accounts.create_user(user)
 
-    fixture_post(user, post1)
-    fixture_post(user, post2)
-  end
-end
-
-# SeedCustom.init()
+{:ok, _post} = Posts.create_post(user, post)

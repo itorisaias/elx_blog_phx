@@ -3,7 +3,7 @@ defmodule Blog.PostsTest do
   Blogs tests
   """
   use Blog.DataCase
-  alias Blog.{Posts, Posts.Post}
+  alias Blog.{Accounts, Posts, Posts.Post}
 
   @valid_post %{
     title: "Post 1",
@@ -14,13 +14,27 @@ defmodule Blog.PostsTest do
     description: "Updated description"
   }
 
+  def user_fixture do
+    {:ok, user} =
+      Accounts.create_user(%{
+        email: "itor isaias",
+        provider: "local",
+        token: "token-fake"
+      })
+
+    user
+  end
+
   def post_fixture(attrs \\ %{}) do
-    {:ok, post} = Posts.create_post(Map.merge(@valid_post, attrs))
+    user = user_fixture()
+    {:ok, post} = Posts.create_post(user, Map.merge(@valid_post, attrs))
+
     post
   end
 
-  test "create_post/1 with valid data" do
-    assert {:ok, %Post{} = post} = Posts.create_post(@valid_post)
+  test "create_post/2 with valid data" do
+    user = user_fixture()
+    assert {:ok, %Post{} = post} = Posts.create_post(user, @valid_post)
     assert post.title == "Post 1"
     assert post.description == "Description 1"
   end
